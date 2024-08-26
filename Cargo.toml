@@ -1,0 +1,12 @@
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Thomas Wehmoeller"]
+edition = "2021"
+
+[workspace.dependencies]
+nu-plugin = "0.96.1"
+nu-protocol = { version = "0.96.1", features = ["plugin"] }

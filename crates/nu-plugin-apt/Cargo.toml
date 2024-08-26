@@ -1,0 +1,10 @@
+[package]
+name = "nu_plugin_apt"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+
+[dependencies]
+apt-parser = "1.0.6"
+nu-plugin.workspace = true
+nu-protocol.workspace = true

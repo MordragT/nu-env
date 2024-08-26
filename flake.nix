@@ -47,7 +47,11 @@
     )
     // {
       overlays.default = this: pkgs: {
-        nushellPlugins.apt = self.packages."${pkgs.system}".nu-plugin-apt;
+        nushellPlugins =
+          this.nushellPlugins
+          // {
+            apt = self.packages."${pkgs.system}".nu-plugin-apt;
+          };
       };
     };
 }

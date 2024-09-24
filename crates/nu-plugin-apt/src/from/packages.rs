@@ -19,7 +19,7 @@ impl SimplePluginCommand for FromAptPackages {
             .category(Category::Formats)
     }
 
-    fn usage(&self) -> &str {
+    fn description(&self) -> &str {
         "Parse Apt Packages files and create a table."
     }
 

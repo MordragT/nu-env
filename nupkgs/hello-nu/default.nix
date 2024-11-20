@@ -5,6 +5,7 @@
 }:
 makeDerivation {
   name = "hello-nix-nushell";
+  version = "0.1.0";
   packages = [hello];
   plugins = [nushellPlugins.formats];
   builder = builtins.toFile "builder.nu" ''

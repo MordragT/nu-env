@@ -4,6 +4,6 @@ pkgs: let
 in {
   inherit nuenv;
   all-to = callPackage ./all-to {};
-  hello = callPackage ./hello {};
+  hello-nu = callPackage ./hello {};
   nu-plugin-apt = callPackage ./nu-plugin-apt {};
 }

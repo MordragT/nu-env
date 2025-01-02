@@ -1,9 +1,9 @@
 pkgs: let
-  nuenv = import ../nuenv nuenv pkgs;
+  nuenv = import ./nuenv nuenv pkgs;
   callPackage = pkgs.lib.callPackageWith (pkgs // nuenv);
 in {
   inherit nuenv;
-  all-to = callPackage ./all-to {};
-  hello-nu = callPackage ./hello {};
-  nu-plugin-apt = callPackage ./nu-plugin-apt {};
+  all-to = callPackage ./by-name/all-to {};
+  hello-nu = callPackage ./by-name/hello-nu {};
+  nu-plugin-apt = callPackage ../nu-plugins/nu-plugin-apt {};
 }

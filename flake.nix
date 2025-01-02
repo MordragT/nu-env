@@ -38,6 +38,6 @@
     )
     // {
       overlays.default = this: pkgs: import ./nupkgs pkgs;
-      overlays.nuenv = import ./nuenv;
+      overlays.nuenv = import ./nupkgs/nuenv;
     };
 }

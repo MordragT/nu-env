@@ -3,7 +3,7 @@ use std log
 log info $"Creating `bin` and `lib` path in ($env.out)"
 mkdir $env.out
 mkdir ($env.out | path join "bin")
-# mkdir ($env.out | path join "lib")
+mkdir ($env.out | path join "nu")
 
 let shell = (which nu).path.0
 

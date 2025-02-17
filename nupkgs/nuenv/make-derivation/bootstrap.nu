@@ -22,7 +22,7 @@ log info $"Preparing User-Supplied Env Vars: ($attrs.__nu_env)"
 $env.NUENV = $attrs.__nu_env | to nuon
 
 log info $"Loading Plugins: ($attrs.__nu_plugins)"
-let plugins = $attrs.__nu_plugins | each {|plugin| ls $"($plugin)/bin" | get name.0 }
+let plugins = $attrs.__nu_plugins | each {|p| $p | path join "bin" | ls $in | $in.0.name}
 $plugins | each {|p| plugin add --plugin-config $attrs.__nu_plugin_config $p}
 
 # Run the Nushell builder

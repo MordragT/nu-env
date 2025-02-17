@@ -4,7 +4,7 @@
   hello,
 }:
 makeDerivation {
-  name = "hello-nix-nushell";
+  name = "hello-nu";
   version = "0.1.0";
   packages = [hello];
   plugins = [nushellPlugins.formats];

@@ -3,11 +3,11 @@ use std log
 log info $"Creating `bin` and `lib` path in ($env.out)"
 mkdir $env.out
 mkdir ($env.out | path join "bin")
-mkdir ($env.out | path join "lib")
+# mkdir ($env.out | path join "lib")
 
 let shell = (which nu).path.0
 
-let lib_dir = [$env.out "lib" "nu"] | path join
+let lib_dir = [$env.out "nu"] | path join
 log info $"Copying source to packages library dir: ($lib_dir)"
 cp -r --preserve [] $env.src $lib_dir
 
@@ -31,6 +31,7 @@ $"
 
     ($plugins_use)
 
+    # TODO read right dependencies folders
     $env.NU_LIB_DIRS = \('($env.dependencies | to nuon)' | from nuon) | append '($lib_dir)'
 
     let environment = '($env.env | to nuon)' | from nuon

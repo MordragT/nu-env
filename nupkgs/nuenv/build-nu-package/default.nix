@@ -24,6 +24,8 @@ makeDerivation {
 
   env = {
     inherit
+      name
+      version
       src
       scripts
       env

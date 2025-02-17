@@ -7,7 +7,7 @@ mkdir ($env.out | path join "bin")
 
 let shell = (which nu).path.0
 
-let lib_dir = [$env.out "nu"] | path join
+let lib_dir = [$env.out "nu" $env.name] | path join
 log info $"Copying source to packages library dir: ($lib_dir)"
 cp -r --preserve [] $env.src $lib_dir
 

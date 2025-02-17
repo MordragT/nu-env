@@ -20,7 +20,7 @@ $plugins | each {|p| plugin add --plugin-config $plugin_config $p}
 let plugins_use = $plugins | each {|p| $"plugin use --plugin-config ($plugin_config) ($p)"} | str join '\n'
 
 log info "Construct env config"
-let env_config = [$env.out "bin" ".env-config"] | path join
+let env_config = $lib_dir | path join "env.nu"
 $"
     use std
 

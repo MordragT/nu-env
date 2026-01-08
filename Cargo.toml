@@ -9,4 +9,4 @@ edition = "2021"
 
 [workspace.dependencies]
 nu-plugin = "0.109"
-nu-protocol = { version = "0.108", features = ["plugin"] }
+nu-protocol = { version = "0.109", features = ["plugin"] }

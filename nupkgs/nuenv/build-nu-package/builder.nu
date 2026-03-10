@@ -43,7 +43,7 @@ for script in ($env.scripts | transpose name source) {
 
     let target = [$env.out "bin" $script.name] | path join
 
-    $"#! /usr/bin/env -S ($shell) --env-config ($env_config) --plugin-config ($plugin_config) --plugins ($plugins | to nuon)
+    $"#! /usr/bin/env -S ($shell) --plugin-config ($plugin_config) --plugins ($plugins | to nuon) --env-config ($env_config)
     source ($lib_dir | path join $script.source)
     " | save $target
 

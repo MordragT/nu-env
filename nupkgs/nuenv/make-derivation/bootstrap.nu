@@ -28,9 +28,9 @@ $plugins | each {|p| plugin add --plugin-config $attrs.__nu_plugin_config $p}
 # Run the Nushell builder
 (nu
     --log-level warn
-    --config $attrs.__nu_config
-    --env-config $attrs.__nu_env_config
     --plugin-config $attrs.__nu_plugin_config
     --plugins ($plugins | to nuon)
+    --config $attrs.__nu_config
+    --env-config $attrs.__nu_env_config
     $attrs.__nu_builder
 )

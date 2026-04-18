@@ -8,5 +8,5 @@ authors = ["Thomas Wehmoeller"]
 edition = "2021"
 
 [workspace.dependencies]
-nu-plugin = "0.111"
-nu-protocol = { version = "0.111", features = ["plugin"] }
+nu-plugin = "0.112"
+nu-protocol = { version = "0.112", features = ["plugin"] }

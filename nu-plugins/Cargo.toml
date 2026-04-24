@@ -1,5 +1,5 @@
 [workspace]
-members = ["nu-plugin-apt"]
+members = ["nushell-plugin-apt"]
 resolver = "2"
 
 [workspace.package]

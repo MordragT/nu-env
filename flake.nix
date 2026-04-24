@@ -2,42 +2,53 @@
   description = "Rust development template";
 
   inputs = {
-    utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    utils,
-    ...
-  }:
-    utils.lib.eachDefaultSystem
-    (
-      system: let
-        pkgs = import nixpkgs {inherit system;};
-        toolchain = pkgs.rustPlatform;
-      in {
-        packages = import ./nupkgs pkgs;
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = import inputs.systems;
 
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            (with toolchain; [
-              cargo
-              rustc
-              rustLibSrc
-            ])
-            clippy
-            rustfmt
-            pkg-config
-          ];
+      imports = [
+        inputs.git-hooks.flakeModule
+        ./devshells
+        ./nu-plugins
+        ./nuenv
+        ./nupkgs
+      ];
 
-          # Specify the rust-src path (many editors rely on this)
-          RUST_SRC_PATH = "${toolchain.rustLibSrc}";
+      perSystem =
+        { pkgs, ... }:
+        {
+          pre-commit = {
+            settings = {
+              package = pkgs.prek;
+              hooks = {
+                nixfmt = {
+                  enable = true;
+                  id = "nixfmt";
+                  after = [ "statix" ];
+                };
+                statix = {
+                  enable = true;
+                  id = "statix";
+                };
+              };
+            };
+          };
         };
-      }
-    )
-    // {
-      overlays.default = this: pkgs: import ./nupkgs pkgs;
-      overlays.nuenv = import ./nupkgs/nuenv;
     };
 }

@@ -9,7 +9,13 @@ let shell = (which nu).path.0
 
 let lib_dir = [$env.out "nu" $env.name] | path join
 log info $"Copying source to packages library dir: ($lib_dir)"
-cp -r --preserve [] $env.src $lib_dir
+if ($env.src | path type) == "dir" {
+    cp -r --preserve [] $env.src $lib_dir
+} else {
+    mkdir $lib_dir
+    cp --preserve [] $env.src $lib_dir
+}
+
 
 log info "Construct plugin config"
 let plugin_config = $lib_dir | path join "plugin.msgpackz"
@@ -32,7 +38,7 @@ $"
     ($plugins_use)
 
     # TODO read right dependencies folders
-    $env.NU_LIB_DIRS = \('($env.dependencies | to nuon)' | from nuon) | append '($lib_dir)'
+    $env.NU_LIB_DIRS = \('($env.libraries | to nuon)' | from nuon) | append '($lib_dir)'
 
     let environment = '($env.env | to nuon)' | from nuon
     load-env $environment

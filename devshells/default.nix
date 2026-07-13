@@ -7,7 +7,7 @@
           toolchain = pkgs.rustPlatform;
         in
         pkgs.mkShell {
-          buildInputs = with pkgs; [
+          packages = with pkgs; [
             (with toolchain; [
               cargo
               rustc

@@ -1,4 +1,4 @@
-use std log
+use std/log
 
 export def main [source: path, target: path, --args = [], --vars = {}] {
     # TODO check if is executable (permissions not implemented in nushell yet)
@@ -28,7 +28,7 @@ export def main [source: path, target: path, --args = [], --vars = {}] {
     }
     " | save $target
 
-    ^chmod +x $target 
+    ^chmod +x $target
 }
 
 export def inplace [exe: path, --args = [], --vars = {}] {

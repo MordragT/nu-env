@@ -1,4 +1,4 @@
-use std log
+use std/log
 
 log info $"Creating `bin` and `lib` path in ($env.out)"
 mkdir $env.out

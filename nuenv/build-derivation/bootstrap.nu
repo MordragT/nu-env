@@ -1,7 +1,7 @@
 ## Bootstrap script
 # This script performs any necessary setup before the builder.nu script is run.
 use std
-use std log
+use std/log
 
 let attrs = (open $env.NIX_ATTRS_JSON_FILE)
 
